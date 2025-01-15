@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Filter Plugin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .email {
+            border: 1px solid #ddd;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+        }
+
+        .email.safe {
+            border-left: 5px solid #4CAF50;
+        }
+
+        .email.phishing {
+            border-left: 5px solid #f44336;
+        }
+
+        .email h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .email p {
+            margin: 0.5rem 0;
+        }
+
+        .filter-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .filter-controls button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .filter-controls button:hover {
+            opacity: 0.9;
+        }
+
+        .filter-controls .safe-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .filter-controls .phishing-btn {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Email Filter Plugin</div>
+
+    <div class="container">
+        <div class="filter-controls">
+            <button class="safe-btn" onclick="filterEmails('safe')">Show Safe Emails</button>
+            <button class="phishing-btn" onclick="filterEmails('phishing')">Show Phishing Emails</button>
+            <button onclick="filterEmails('all')">Show All Emails</button>
+        </div>
+
+        <div id="emails">
+            <div class="email safe">
+                <h3>Subject: Welcome to Our Service</h3>
+                <p>Body: Thank you for signing up. We are excited to have you!</p>
+            </div>
+            <div class="email phishing">
+                <h3>Subject: Account Suspended</h3>
+                <p>Body: Your account has been compromised. Click here to verify your identity.</p>
+            </div>
+            <div class="email safe">
+                <h3>Subject: Monthly Newsletter</h3>
+                <p>Body: Here is your monthly update. Enjoy the read!</p>
+            </div>
+            <div class="email phishing">
+                <h3>Subject: Urgent: Password Reset</h3>
+                <p>Body: We detected unusual activity. Please reset your password now.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function filterEmails(filter) {
+            const emails = document.querySelectorAll('.email');
+            emails.forEach(email => {
+                if (filter === 'all') {
+                    email.style.display = 'block';
+                } else if (email.classList.contains(filter)) {
+                    email.style.display = 'block';
+                } else {
+                    email.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
